@@ -1,0 +1,27 @@
+//
+//  hehe.pch
+//  WjqGUImageDemo
+//
+//  Created by landixing on 2017/3/22.
+//  Copyright © 2017年 landixing. All rights reserved.
+//
+
+#ifndef hehe_pch
+#define hehe_pch
+
+
+
+#define WS(weakSelf) __weak __typeof(&*self) weakSelf = self;
+
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "AFNetworking.h"
+#import <SDWebImage/SDWebImageCompat.h>
+#import <GPUImage/GPUImage.h>
+#import <AlivcLiveVideo/AlivcLiveVideo.h>
+#import <Masonry/Masonry.h>
+#import "GPUImageApplyFilter.h"
+
+
+
+#endif /* hehe_pch */

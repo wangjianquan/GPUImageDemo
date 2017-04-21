@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>素描</string>
+	<string>朦胧加暗</string>
+	<string>阀值素描</string>
+	<string>卡通效果</string>
+	<string>卡通效果2</string>
+	<string>水粉画</string>
+	<string>相片底片</string>
+	<string>同心圆像素化</string>
+	<string>交叉线阴影</string>
+	<string>监控摄像</string>
+	<string>晕影</string>
+	<string>漩涡</string>
+	<string>鱼眼效果</string>
+	<string>凹面镜</string>
+	<string>哈哈镜</string>
+	<string>水晶球效果</string>
+	<string>球形折射</string>
+	<string>色调分离</string>
+	<string>CGA色彩滤镜</string>
+	<string>柏林噪点</string>
+	<string>3x3卷积，高亮大色块变黑，加亮边</string>
+	<string>亮度阈
+亮度阈
+亮度阈
+</string>
+	<string>自适应阈值</string>
+	<string>曝光</string>
+	<string>Contrast</string>
+	<string>怀旧</string>
+	<string>色阶</string>
+	<string>灰度</string>
+	<string>RGB</string>
+	<string>色调曲线</string>
+	<string>提亮阴影</string>
+	<string>图像黑白</string>
+	<string>锐化</string>
+	<string>十字</string>
+	<string>线条</string>
+	<string>高斯模糊</string>
+	<string>BoxBlur</string>
+</array>
+</plist>
