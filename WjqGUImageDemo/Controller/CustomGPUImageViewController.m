@@ -146,7 +146,7 @@
     [group addTarget:saturationFilter];
     
     
-    //设置滤镜组链
+    //设置滤镜组链(后一个添加到第二个)
     [bilateralFilter addTarget:brightnessFilter];
     [brightnessFilter addTarget:sharpenFilter];
     [sharpenFilter addTarget:exposureFilter];

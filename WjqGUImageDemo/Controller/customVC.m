@@ -34,15 +34,6 @@
 
 @implementation customVC
 
-
-- (UIView *)clipView{
-    if (!_clipView) {
-        _clipView = [[UIView alloc]init];
-        _clipView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        [self.view addSubview:_clipView];
-    }
-    return _clipView;
-}
 - (NSMutableArray *)titleArray{
     if (!_titleArray) {
         _titleArray = [[NSMutableArray alloc]init];
@@ -53,88 +44,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    //截屏
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"截屏按钮" forState:UIControlStateNormal];
-    [btn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"IMG_1767"]]];
-//    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    self.ScreenShotsBtn = btn;
-    WS(weakSelf);
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.mas_topLayoutGuide);
-        make.right.mas_equalTo(-20);
-        make.height.mas_equalTo(35);
-    }];
-    
-    //创建截屏手势
-    UIPanGestureRecognizer * pan  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGesture:)];
-//    [self.view addGestureRecognizer:pan];
-    
     [self setUpCamera];
     [self setUpCollectionView];
 
 }
-
-- (void)panGesture:(UIPanGestureRecognizer * )panGesture
-{
-    //结束位置
-    CGPoint endPoint = CGPointZero;
-    if (panGesture .state == UIGestureRecognizerStateBegan) {
-        
-        /**开始点击时，记录手势的起点**/
-        self.startPoint = [panGesture locationInView:self.view];
-        
-    } else if(panGesture.state == UIGestureRecognizerStateChanged){
-        //当手势移动时,动态改变终点的值,并计算起点终点形成的矩形区域
-        
-        endPoint = [panGesture locationInView:self.view];
-        
-        CGFloat width = endPoint.x - self.startPoint.x;
-        CGFloat height = endPoint.y - self.startPoint.y;
-        
-        //矩形区域frame
-        CGRect clipFrame = CGRectMake(self.startPoint.x, self.startPoint.y, width, height);
-        self.clipView.frame = clipFrame;
-        
-    }else if (panGesture.state == UIGestureRecognizerStateEnded){
-    /**若手势停止，将剪切区域的图片内容绘制到图形上下文中**/
-        
-        /**若手势停止，将剪切区域的图片内容绘制到图形上下文中**/
-        //开启位图上下文
-        UIGraphicsBeginImageContextWithOptions(self.videoPreView.bounds.size, NO, 0);
-        //创建大小等于剪切区域大小的封闭路径
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.clipView.frame];
-        //设置超出的内容不显示，
-        [path addClip];
-        //获取绘图上下文
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        //将图片渲染的上下文中
-        [self.videoPreView.layer renderInContext:context];
-        //获取上下文中的图片
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        //关闭位图上下文
-        UIGraphicsEndImageContext();
-        //移除剪切区域视图控件，并清空
-        [self.clipView removeFromSuperview];
-        self.clipView = nil;
-        //将图片显示到imageView上
-        self.navigationController.navigationBar.backIndicatorImage = image;
-        //通过alertView提示用户，是否将图片保存至相册
-        UIAlertController * alertControll = [UIAlertController alertControllerWithTitle:@"保存图片" message:@"是否将图片保存至相册？" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alertControll addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:NULL]];
-        
-        [alertControll addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-         
-           
-        }]];
-        
-        [self presentViewController:alertControll animated:YES completion:nil];
-    }
-    
-}
-
 
 - (void)setUpCamera{
     
@@ -199,9 +112,7 @@
     // 获取文件路径
     NSString *path = [[NSBundle mainBundle] pathForResource:@"FilterStyle" ofType:@"plist"];
     self.titleArray = [NSMutableArray arrayWithContentsOfFile:path];
-    
-    
-       [collecView reloadData];
+    [collecView reloadData];
 
 }
 
